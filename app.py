@@ -8,6 +8,18 @@ st.write("Hi there! I'm ready to help you with code reviewing. Write your code b
 # Secure API Key Input (Blurred)
 API_KEY = st.text_input("🔑 Enter your Google API Key:", type="password")
 
+# Button to verify API Key
+if st.button("✅ Verify API Key"):
+    if API_KEY:
+        try:
+            # Configure Gemini AI with the provided API key
+            genai.configure(api_key=API_KEY)
+            st.success("API Key verified successfully!")
+        except Exception as e:
+            st.error("⚠️ Invalid API Key or configuration error. Please check your key and try again.")
+    else:
+        st.warning("🔑 Please enter your Google API Key to verify.")
+
 if API_KEY:
     try:
         # Configure Gemini AI with the provided API key
